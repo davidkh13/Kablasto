@@ -1,0 +1,12 @@
+[gd_scene load_steps=5 format=3 uid="uid://bgxc4e07xpyy3"]
+
+[ext_resource type="Script" uid="uid://b360l7sntxir7" path="res://game_manager.gd" id="1_70yv6"]
+[ext_resource type="PackedScene" uid="uid://cm14ss3di5sea" path="res://asteroid.tscn" id="2_d5upp"]
+[ext_resource type="PackedScene" uid="uid://jjoyxkpngbc5" path="res://asteroid_boss.tscn" id="2_o2178"]
+[ext_resource type="PackedScene" uid="uid://bf1pqo42tkbr8" path="res://player.tscn" id="3_vk86k"]
+
+[node name="GameManager" type="Node2D"]
+script = ExtResource("1_70yv6")
+asteroid_scene = ExtResource("2_d5upp")
+player_scene = ExtResource("3_vk86k")
+asteroid_boss_scene = ExtResource("2_o2178")
