@@ -1,0 +1,7 @@
+.import/
+.godot/
+mono/
+*.import
+*.tmp
+*.log
+*.cfg
