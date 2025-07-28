@@ -1,0 +1,126 @@
+[gd_scene load_steps=23 format=3 uid="uid://colgomsk82jqj"]
+
+[ext_resource type="Texture2D" uid="uid://bsje56yv6474j" path="res://space.png" id="1_h2yge"]
+[ext_resource type="Script" uid="uid://cxh10u8y1qgix" path="res://scripts/background.gd" id="2_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://b7icxyuiaetl8" path="res://eyeball_boss.tscn" id="2_efxa6"]
+[ext_resource type="PackedScene" uid="uid://b7ucsp42pnrm4" path="res://formation_controller.tscn" id="3_ycdy4"]
+[ext_resource type="AudioStream" uid="uid://dxfac3jijk30r" path="res://KablastoTango.ogg" id="4_lquwl"]
+[ext_resource type="PackedScene" uid="uid://db2cicg8l8w3o" path="res://charger_boss.tscn" id="4_vivmo"]
+[ext_resource type="PackedScene" uid="uid://drdtbhfdqm0ph" path="res://exploderBot.tscn" id="5_2cqfq"]
+[ext_resource type="AudioStream" uid="uid://dxsjwvh7frvv8" path="res://Kablasto Boss.ogg" id="5_lquwl"]
+[ext_resource type="PackedScene" uid="uid://cvopkqmidauaa" path="res://hud.tscn" id="6_272bh"]
+[ext_resource type="PackedScene" uid="uid://c5vwbf6choq0r" path="res://exploder_boss.tscn" id="6_yaehf"]
+[ext_resource type="AudioStream" uid="uid://g06mknkifbp5" path="res://shields are low.wav" id="7_5vw27"]
+[ext_resource type="AudioStream" uid="uid://c5t3tqocyfmmf" path="res://Kablasto Waltz.ogg" id="8_5vw27"]
+[ext_resource type="AudioStream" uid="uid://6n634rkbtm2h" path="res://weaponsUpgraded.mp3" id="9_kek77"]
+[ext_resource type="AudioStream" uid="uid://beeenyifuw1pg" path="res://shieldsUpgraded.mp3" id="10_4c57u"]
+[ext_resource type="PackedScene" uid="uid://bgxc4e07xpyy3" path="res://game_manager.tscn" id="12_dg77c"]
+[ext_resource type="Script" uid="uid://ujmhu7w2m5o4" path="res://game_area.gd" id="12_ycdy4"]
+[ext_resource type="AudioStream" uid="uid://baa6m7tsy707y" path="res://formation approaching.mp3" id="13_w48qg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_272bh"]
+size = Vector2(948.333, 696.427)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lquwl"]
+size = Vector2(1426, 1044.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7mycd"]
+size = Vector2(1295, 1386)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5vw27"]
+size = Vector2(1074.75, 1538)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w48qg"]
+size = Vector2(1273, 706)
+
+[node name="Main" type="Node2D"]
+
+[node name="GameManager" parent="." instance=ExtResource("12_dg77c")]
+eyeball_boss_scene = ExtResource("2_efxa6")
+formation_scene = ExtResource("3_ycdy4")
+charger_boss_scene = ExtResource("4_vivmo")
+exploderBot_scene = ExtResource("5_2cqfq")
+exploderBoss_scene = ExtResource("6_yaehf")
+
+[node name="Background" type="Sprite2D" parent="GameManager"]
+z_index = -1
+texture = ExtResource("1_h2yge")
+script = ExtResource("2_1bvp3")
+
+[node name="StaticBody2d (top)" type="StaticBody2D" parent="GameManager/Background"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameManager/Background/StaticBody2d (top)"]
+position = Vector2(-7.25001, -965.68)
+scale = Vector2(1.5, 1.5)
+shape = SubResource("RectangleShape2D_272bh")
+
+[node name="StaticBody2D(bot)" type="StaticBody2D" parent="GameManager/Background"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameManager/Background/StaticBody2D(bot)"]
+position = Vector2(-12, 956.75)
+shape = SubResource("RectangleShape2D_lquwl")
+
+[node name="StaticBody2D2(left)" type="StaticBody2D" parent="GameManager/Background"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameManager/Background/StaticBody2D2(left)"]
+position = Vector2(-1378.5, 20)
+shape = SubResource("RectangleShape2D_7mycd")
+
+[node name="StaticBody2D(right)" type="StaticBody2D" parent="GameManager/Background"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameManager/Background/StaticBody2D(right)"]
+position = Vector2(1254.63, 83)
+shape = SubResource("RectangleShape2D_5vw27")
+
+[node name="StreamPlayerBG_Music" type="AudioStreamPlayer" parent="GameManager"]
+stream = ExtResource("4_lquwl")
+volume_db = -3.0
+autoplay = true
+parameters/looping = true
+
+[node name="StreamPlayerBoss" type="AudioStreamPlayer" parent="GameManager"]
+stream = ExtResource("5_lquwl")
+volume_db = -3.0
+parameters/looping = true
+
+[node name="HUD" parent="GameManager" instance=ExtResource("6_272bh")]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="GameManager/HUD"]
+stream = ExtResource("7_5vw27")
+volume_db = 20.0
+
+[node name="StreamPlayerWaltz" type="AudioStreamPlayer" parent="GameManager"]
+stream = ExtResource("8_5vw27")
+volume_db = -3.0
+parameters/looping = true
+
+[node name="weaponUpgrade" type="AudioStreamPlayer" parent="GameManager"]
+stream = ExtResource("9_kek77")
+volume_db = -5.0
+
+[node name="shieldUpgrade" type="AudioStreamPlayer" parent="GameManager"]
+stream = ExtResource("10_4c57u")
+volume_db = -5.0
+
+[node name="formationApproach" type="AudioStreamPlayer" parent="GameManager"]
+stream = ExtResource("13_w48qg")
+volume_db = 3.0
+
+[node name="gameArea" type="Area2D" parent="GameManager"]
+script = ExtResource("12_ycdy4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameManager/gameArea"]
+position = Vector2(641.5, 359)
+shape = SubResource("RectangleShape2D_w48qg")
+
+[node name="tempCamera2D" type="Camera2D" parent="GameManager"]
+
+[connection signal="body_entered" from="GameManager/gameArea" to="GameManager/gameArea" method="_on_body_entered"]

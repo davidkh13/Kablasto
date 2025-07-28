@@ -1,0 +1,66 @@
+[gd_scene load_steps=9 format=3 uid="uid://colgomsk82jqj"]
+
+[ext_resource type="Texture2D" uid="uid://bsje56yv6474j" path="res://space.png" id="1_h2yge"]
+[ext_resource type="Script" uid="uid://cxh10u8y1qgix" path="res://background.gd" id="2_1bvp3"]
+[ext_resource type="AudioStream" uid="uid://dxfac3jijk30r" path="res://KablastoTango.ogg" id="4_lquwl"]
+[ext_resource type="PackedScene" uid="uid://bgxc4e07xpyy3" path="res://game_manager.tscn" id="12_dg77c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_272bh"]
+size = Vector2(1392.17, 49.7083)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lquwl"]
+size = Vector2(2124.5, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7mycd"]
+size = Vector2(138, 1386)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5vw27"]
+size = Vector2(103.5, 1538)
+
+[node name="Main" type="Node2D"]
+
+[node name="GameManager" parent="." instance=ExtResource("12_dg77c")]
+
+[node name="Background" type="Sprite2D" parent="GameManager"]
+z_index = -1
+texture = ExtResource("1_h2yge")
+script = ExtResource("2_1bvp3")
+
+[node name="StaticBody2d (top)" type="StaticBody2D" parent="GameManager"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameManager/StaticBody2d (top)"]
+position = Vector2(679.875, -340)
+scale = Vector2(1.5, 1.5)
+shape = SubResource("RectangleShape2D_272bh")
+
+[node name="StaticBody2D(bot)" type="StaticBody2D" parent="GameManager"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameManager/StaticBody2D(bot)"]
+position = Vector2(661.75, 1050)
+shape = SubResource("RectangleShape2D_lquwl")
+
+[node name="StaticBody2D2(left)" type="StaticBody2D" parent="GameManager"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameManager/StaticBody2D2(left)"]
+position = Vector2(-450, 301)
+shape = SubResource("RectangleShape2D_7mycd")
+
+[node name="StaticBody2D(right)" type="StaticBody2D" parent="GameManager"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameManager/StaticBody2D(right)"]
+position = Vector2(1800, 300)
+shape = SubResource("RectangleShape2D_5vw27")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="GameManager"]
+stream = ExtResource("4_lquwl")
+volume_db = -3.0
+autoplay = true
+parameters/looping = true

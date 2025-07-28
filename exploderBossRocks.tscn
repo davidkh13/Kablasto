@@ -1,0 +1,60 @@
+[gd_scene load_steps=8 format=3 uid="uid://b7c7ptbvwhryh"]
+
+[ext_resource type="Texture2D" uid="uid://bff1dpgakqbv4" path="res://asteroid.png" id="1_kcd80"]
+[ext_resource type="Script" uid="uid://wt3812euiov" path="res://exploder_boss_rocks.gd" id="1_r0ho7"]
+[ext_resource type="PackedScene" uid="uid://ct2kcg2ryumfb" path="res://explode.tscn" id="2_45cw0"]
+[ext_resource type="Texture2D" uid="uid://dkoxyqaib1j0s" path="res://beam.png" id="2_r0ho7"]
+[ext_resource type="Script" uid="uid://dr2kcn1w885b1" path="res://scripts/exploderbossrockbody.gd" id="2_xa0lg"]
+[ext_resource type="Script" uid="uid://cjd21u743lsih" path="res://scripts/explodeBossRockArea.gd" id="4_r1vm2"]
+[ext_resource type="AudioStream" uid="uid://cqkg5q81qdthf" path="res://LetterChange.wav" id="5_oayst"]
+
+[node name="Marker2D" type="Marker2D"]
+script = ExtResource("1_r0ho7")
+explosion_scene = ExtResource("2_45cw0")
+
+[node name="theRock1" type="CharacterBody2D" parent="."]
+script = ExtResource("2_xa0lg")
+
+[node name="Sprite2D" type="Sprite2D" parent="theRock1"]
+position = Vector2(-610, 0)
+texture = ExtResource("1_kcd80")
+
+[node name="Sprite2D2" type="Sprite2D" parent="theRock1"]
+position = Vector2(-400, 0)
+texture = ExtResource("2_r0ho7")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="theRock1"]
+polygon = PackedVector2Array(-626, -111, -532, -72, -487, -2, -518, 78, -614, 121, -713, 68, -733, -8, -696, -95)
+
+[node name="Area2D" type="Area2D" parent="theRock1"]
+script = ExtResource("4_r1vm2")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="theRock1/Area2D"]
+polygon = PackedVector2Array(-626, -111, -532, -72, -487, -2, -518, 78, -614, 121, -713, 68, -733, -8, -696, -95)
+
+[node name="theRock2" type="CharacterBody2D" parent="."]
+script = ExtResource("2_xa0lg")
+
+[node name="Sprite2D" type="Sprite2D" parent="theRock2"]
+position = Vector2(610, 0)
+texture = ExtResource("1_kcd80")
+
+[node name="Sprite2D2" type="Sprite2D" parent="theRock2"]
+position = Vector2(400, 0)
+rotation = -3.14159
+texture = ExtResource("2_r0ho7")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="theRock2"]
+polygon = PackedVector2Array(602, -117, 694, -62, 727, -4, 707, 68, 612, 119, 514, 72, 485, 6, 520, -89)
+
+[node name="Area2D" type="Area2D" parent="theRock2"]
+script = ExtResource("4_r1vm2")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="theRock2/Area2D"]
+polygon = PackedVector2Array(602, -117, 694, -62, 727, -4, 707, 68, 612, 119, 514, 72, 485, 6, 520, -89)
+
+[node name="weak_hit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_oayst")
+
+[connection signal="body_entered" from="theRock1/Area2D" to="theRock1/Area2D" method="_on_body_entered"]
+[connection signal="body_entered" from="theRock2/Area2D" to="theRock2/Area2D" method="_on_body_entered"]

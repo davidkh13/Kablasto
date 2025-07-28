@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://de6tr6152n5q"]
+
+[ext_resource type="Script" uid="uid://bjfktdsiklvri" path="res://scripts/bad_bullet.gd" id="1_gs7p5"]
+[ext_resource type="Texture2D" uid="uid://dowpfvw23643u" path="res://bullet.png" id="2_56kna"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_v8qja"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_v8qja"]
+offsets = PackedFloat32Array(0.0181818, 0.818182, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.490909, 0.490909, 0.490909, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_t4vbm"]
+gradient = SubResource("Gradient_v8qja")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2b2rl"]
+particle_flag_disable_z = true
+inherit_velocity_ratio = 0.5
+spread = 180.0
+initial_velocity_max = 1000.0
+gravity = Vector3(0, 98, 0)
+scale_max = 3.0
+color = Color(0.952941, 0.603922, 0.45098, 1)
+color_ramp = SubResource("GradientTexture1D_t4vbm")
+
+[node name="bad_bullet" type="Area2D"]
+script = ExtResource("1_gs7p5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_56kna")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(0, -24, 20, -7, 17, 7, 0, 20, -16, 4, -18, -9)
+
+[node name="GPUParticles2D(Trail)" type="GPUParticles2D" parent="."]
+z_index = 1
+material = SubResource("CanvasItemMaterial_v8qja")
+amount = 50
+lifetime = 0.25
+process_material = SubResource("ParticleProcessMaterial_2b2rl")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

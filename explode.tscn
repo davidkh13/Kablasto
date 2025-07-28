@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://ct2kcg2ryumfb"]
+
+[ext_resource type="Script" uid="uid://cui0xjshbsvh" path="res://scripts/explode.gd" id="1_dc1yq"]
+[ext_resource type="SpriteFrames" uid="uid://mhwsnh0xkgc8" path="res://explosion.tres" id="1_tcvp6"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_dc1yq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
+sprite_frames = ExtResource("1_tcvp6")
+animation = &"explode"
+autoplay = "explode"
+frame = 7
+frame_progress = 1.0

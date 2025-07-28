@@ -1,0 +1,192 @@
+[gd_scene load_steps=9 format=3 uid="uid://cvopkqmidauaa"]
+
+[ext_resource type="FontFile" uid="uid://baawqnj073dtx" path="res://AstronBoyWonder.ttf" id="1_37p78"]
+[ext_resource type="Script" uid="uid://b3w6le7nq2kl6" path="res://scripts/hud.gd" id="1_64ctp"]
+[ext_resource type="Script" uid="uid://bpptmo34nfrri" path="res://scripts/v_box_container.gd" id="3_8sq4i"]
+[ext_resource type="Script" uid="uid://cals4woxbc6u0" path="res://scripts/progress_bar_boss.gd" id="4_640wx"]
+[ext_resource type="Script" uid="uid://byigrw46ryfn3" path="res://scripts/radar_control.gd" id="5_a2258"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_64ctp"]
+bg_color = Color(0, 0.815686, 0.188235, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.780392, 0.886275, 0.188235, 1)
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_offset = Vector2(10, 10)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a2258"]
+bg_color = Color(1, 0.843137, 0, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(1, 0.972549, 0.862745, 1)
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8sq4i"]
+bg_color = Color(0.745, 0.431134, 0.962835, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.924644, 0.165033, 0.575631, 1)
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_64ctp")
+
+[node name="Control (For HUD)" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1293.0
+offset_bottom = 726.0
+
+[node name="ProgressBar (shields)" type="ProgressBar" parent="Control (For HUD)"]
+layout_mode = 0
+offset_left = 47.0
+offset_top = 45.0
+offset_right = 241.0
+offset_bottom = 72.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_64ctp")
+
+[node name="Label (shields)" type="Label" parent="Control (For HUD)/ProgressBar (shields)"]
+layout_mode = 0
+offset_left = 29.0
+offset_top = -29.0
+offset_right = 157.0
+theme_override_colors/font_color = Color(0.741176, 0.364706, 0.160784, 1)
+theme_override_colors/font_shadow_color = Color(0.388235, 0.282353, 0.552941, 1)
+theme_override_colors/font_outline_color = Color(0.458824, 0, 0.270588, 1)
+theme_override_fonts/font = ExtResource("1_37p78")
+theme_override_font_sizes/font_size = 30
+text = "Shields"
+horizontal_alignment = 1
+
+[node name="ProgressGoldShield" type="ProgressBar" parent="Control (For HUD)"]
+layout_mode = 0
+offset_left = 47.0
+offset_top = 45.0
+offset_right = 241.0
+offset_bottom = 72.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_a2258")
+show_percentage = false
+
+[node name="Level_text" type="Label" parent="Control (For HUD)"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -126.5
+offset_top = -142.5
+offset_right = 126.5
+offset_bottom = -57.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.741176, 0.364706, 0.160784, 1)
+theme_override_colors/font_shadow_color = Color(0.387871, 0.282866, 0.553897, 1)
+theme_override_colors/font_outline_color = Color(0.458824, 0, 0.270588, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("1_37p78")
+theme_override_font_sizes/font_size = 80
+text = "Level 1"
+
+[node name="Timer" type="Timer" parent="Control (For HUD)"]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control (For HUD)"]
+layout_mode = 0
+offset_left = 71.0
+offset_top = 82.0
+offset_right = 233.0
+offset_bottom = 143.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control (For HUD)"]
+layout_mode = 0
+offset_right = 74.0
+offset_bottom = 60.0
+script = ExtResource("3_8sq4i")
+
+[node name="Label (Score)" type="Label" parent="Control (For HUD)/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.741176, 0.364706, 0.160784, 1)
+theme_override_colors/font_shadow_color = Color(0.388235, 0.282353, 0.552941, 1)
+theme_override_colors/font_outline_color = Color(0.458824, 0, 0.270588, 1)
+theme_override_fonts/font = ExtResource("1_37p78")
+theme_override_font_sizes/font_size = 30
+text = "Score"
+
+[node name="Label" type="Label" parent="Control (For HUD)/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.932365, 0.762581, 0.408753, 1)
+theme_override_colors/font_shadow_color = Color(0.940063, 0.806001, 0.403459, 1)
+theme_override_colors/font_outline_color = Color(0.791498, 0.626433, 0.541182, 1)
+theme_override_font_sizes/font_size = 30
+horizontal_alignment = 1
+
+[node name="ProgressBarBoss" type="ProgressBar" parent="Control (For HUD)"]
+layout_mode = 2
+offset_right = 194.0
+offset_bottom = 27.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_8sq4i")
+show_percentage = false
+script = ExtResource("4_640wx")
+
+[node name="Label (Boss)" type="Label" parent="Control (For HUD)/ProgressBarBoss"]
+layout_mode = 2
+offset_top = -29.0
+offset_right = 163.0
+offset_bottom = 4.0
+theme_override_fonts/font = ExtResource("1_37p78")
+theme_override_font_sizes/font_size = 30
+text = "Level Boss"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RadarControl" type="Control" parent="Control (For HUD)"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("5_a2258")
+
+[node name="LabelGameOver" type="Label" parent="Control (For HUD)"]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -147.0
+offset_top = -27.0
+offset_right = 147.0
+offset_bottom = 27.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.85356, 0.749273, 0.37945, 1)
+theme_override_colors/font_shadow_color = Color(0.905721, 0.429302, 0.249532, 1)
+theme_override_colors/font_outline_color = Color(0.425738, 0.341552, 0.880424, 1)
+theme_override_fonts/font = ExtResource("1_37p78")
+theme_override_font_sizes/font_size = 50
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
