@@ -1,0 +1,131 @@
+[gd_scene load_steps=22 format=3 uid="uid://d27ot8nkco6rl"]
+
+[ext_resource type="Texture2D" uid="uid://cnwj70tu7xh5n" path="res://finalbossEyelid.png" id="1_apw72"]
+[ext_resource type="Script" uid="uid://beh26mh0npsdp" path="res://finalboss.gd" id="1_yxsof"]
+[ext_resource type="PackedScene" uid="uid://ct2kcg2ryumfb" path="res://explode.tscn" id="2_jdqq5"]
+[ext_resource type="Texture2D" uid="uid://cs5sx1e0do0hu" path="res://finalbossEyeball.png" id="2_yxsof"]
+[ext_resource type="Texture2D" uid="uid://chyj14n6clp5y" path="res://finalbossShell.png" id="3_34u66"]
+[ext_resource type="PackedScene" uid="uid://xwpwa71rtxbv" path="res://radial_glow.tscn" id="3_lp043"]
+[ext_resource type="Shader" uid="uid://dri7gpjbvttqv" path="res://dissolve_shader.gdshader" id="4_ks3pb"]
+[ext_resource type="PackedScene" uid="uid://cei0b84ysbe7v" path="res://shield_generators.tscn" id="5_34u66"]
+[ext_resource type="Script" uid="uid://jgbgep3d4dhl" path="res://Finalboss_area2d.gd" id="6_xux5l"]
+[ext_resource type="Texture2D" path="res://dissolve_noise_texture.tres" id="7_0g5u5"]
+[ext_resource type="Script" uid="uid://catruokw8crhe" path="res://scripts/area_2d_eye.gd" id="7_cllty"]
+[ext_resource type="AudioStream" uid="uid://cqkg5q81qdthf" path="res://LetterChange.wav" id="7_nnqea"]
+[ext_resource type="Script" uid="uid://duuqgxn8n4rsm" path="res://scripts/explosion_sound_pool.gd" id="12_ks3pb"]
+[ext_resource type="AudioStream" uid="uid://bwciapnf3m3ju" path="res://explosion.wav" id="13_0g5u5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nnqea"]
+shader = ExtResource("4_ks3pb")
+shader_parameter/glow_enabled = true
+shader_parameter/glow_color = Color(1, 0.9, 0.5, 1)
+shader_parameter/base_strength = 0.4
+shader_parameter/pulse_strength = 0.8
+shader_parameter/use_dissolve = false
+shader_parameter/dissolve_amount = 0.0
+shader_parameter/edge_color = Color(1, 0.5, 0, 1)
+shader_parameter/edge_width = 0.05
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xux5l"]
+shader = ExtResource("4_ks3pb")
+shader_parameter/glow_enabled = true
+shader_parameter/glow_color = Color(1, 0.9, 0.5, 1)
+shader_parameter/base_strength = 0.4
+shader_parameter/pulse_strength = 0.8
+shader_parameter/use_dissolve = false
+shader_parameter/noise_texture = ExtResource("7_0g5u5")
+shader_parameter/dissolve_amount = 0.0
+shader_parameter/edge_color = Color(1, 0.5, 0, 1)
+shader_parameter/edge_width = 0.05
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cllty"]
+shader = ExtResource("4_ks3pb")
+shader_parameter/glow_enabled = true
+shader_parameter/glow_color = Color(1, 0.9, 0.5, 1)
+shader_parameter/base_strength = 0.4
+shader_parameter/pulse_strength = 0.8
+shader_parameter/use_dissolve = false
+shader_parameter/noise_texture = ExtResource("7_0g5u5")
+shader_parameter/dissolve_amount = 0.0
+shader_parameter/edge_color = Color(1, 0.5, 0, 1)
+shader_parameter/edge_width = 0.05
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jdqq5"]
+radius = 51.923
+
+[sub_resource type="Gradient" id="Gradient_34u66"]
+offsets = PackedFloat32Array(0.0181818, 0.818182, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.490909, 0.490909, 0.490909, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_t4vbm"]
+gradient = SubResource("Gradient_34u66")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rjfoy"]
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 100.0
+emission_ring_radius = 250.0
+emission_ring_inner_radius = 150.0
+emission_ring_cone_angle = 45.0
+inherit_velocity_ratio = 1.0
+spread = 180.0
+gravity = Vector3(0, 98, 0)
+scale_max = 3.0
+color = Color(0.823529, 1, 0.6, 1)
+color_ramp = SubResource("GradientTexture1D_t4vbm")
+
+[node name="FinalBoss" type="RigidBody2D"]
+collision_layer = 128
+collision_mask = 128
+gravity_scale = 0.0
+script = ExtResource("1_yxsof")
+explosion_scene = ExtResource("2_jdqq5")
+radial_glow_scene = ExtResource("3_lp043")
+
+[node name="SpriteEyelid" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_nnqea")
+texture = ExtResource("1_apw72")
+
+[node name="SpriteEyeball" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_xux5l")
+texture = ExtResource("2_yxsof")
+
+[node name="Spritebody" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_cllty")
+texture = ExtResource("3_34u66")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-4, -362, 95, -248, 84, -340, 232, -5, 223, 124, 140, 289, -1, 318, -138, 289, -232, 98, -228, -13, -93, -324, -81, -225)
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("6_xux5l")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(-4, -362, 95, -248, 84, -340, 232, -5, 223, 124, 140, 289, -1, 318, -138, 289, -232, 98, -228, -13, -93, -324, -81, -225)
+
+[node name="Area2D_Eye" type="Area2D" parent="."]
+collision_layer = 128
+collision_mask = 128
+script = ExtResource("7_cllty")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_Eye"]
+position = Vector2(2, 8)
+shape = SubResource("CircleShape2D_jdqq5")
+
+[node name="generators" parent="." instance=ExtResource("5_34u66")]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 30
+lifetime = 0.25
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_rjfoy")
+
+[node name="weak_hit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_nnqea")
+
+[node name="ExplosionSoundPool" type="Node" parent="."]
+script = ExtResource("12_ks3pb")
+sound_stream = ExtResource("13_0g5u5")
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

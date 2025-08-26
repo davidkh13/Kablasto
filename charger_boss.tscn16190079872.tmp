@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://db2cicg8l8w3o"]
+
+[ext_resource type="Script" uid="uid://bg4fwiyk1f7oo" path="res://scripts/charger2d.gd" id="1_7wvgc"]
+[ext_resource type="Script" uid="uid://clcujro02avg8" path="res://scripts/charger_boss.gd" id="1_62105"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_62105"]
+load_path = "res://.godot/imported/charger.png-49ad82ba3f93fc36559e92f895361469.ctex"
+
+[node name="charger_boss" type="RigidBody2D"]
+mass = 2.0
+linear_damp_mode = 1
+script = ExtResource("1_62105")
+direction = null
+tracking_speed = null
+charge_speed = null
+turn_speed = null
+charge_duration = null
+recovery_time = null
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("CompressedTexture2D_62105")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(5, -167, 39, -141, 60, -224, 85, -106, 104, -187, 119, -86, 259, 17, 78, 122, 2, 218, -72, 125, -255, 15, -111, -96, -102, -196, -80, -108, -59, -218, -38, -131)
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("1_7wvgc")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(5, -167, 39, -141, 60, -224, 85, -106, 104, -187, 119, -86, 259, 17, 78, 122, 2, 218, -72, 125, -255, 15, -111, -96, -102, -196, -80, -108, -59, -218, -38, -131)
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

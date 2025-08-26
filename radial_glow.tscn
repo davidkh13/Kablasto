@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://xwpwa71rtxbv"]
+
+[ext_resource type="Texture2D" uid="uid://dy0k85rs1x7t0" path="res://radial_glow.png" id="1_kyoh7"]
+
+[node name="radial_glow" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("1_kyoh7")

@@ -1,0 +1,99 @@
+[gd_scene load_steps=8 format=3 uid="uid://cei0b84ysbe7v"]
+
+[ext_resource type="Script" uid="uid://b8kew81vxd702" path="res://shield_generators.gd" id="1_8ya2f"]
+[ext_resource type="Texture2D" uid="uid://dua56cm1esxcn" path="res://generator.png" id="1_gl8x8"]
+[ext_resource type="Texture2D" uid="uid://c7eb1s5vu5pgp" path="res://redglow.png" id="2_8ya2f"]
+[ext_resource type="Script" uid="uid://c4bqvyl8esdvb" path="res://shield_body.gd" id="2_r8wai"]
+[ext_resource type="PackedScene" uid="uid://ct2kcg2ryumfb" path="res://explode.tscn" id="3_u1dln"]
+[ext_resource type="Script" uid="uid://dkp2q0dun5nk3" path="res://scripts/area_2d(hitbox).gd" id="6_m0c0d"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r8wai"]
+radius = 274.002
+
+[node name="Marker2D" type="Marker2D"]
+script = ExtResource("1_8ya2f")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(-500, 0)
+script = ExtResource("2_r8wai")
+explosion_scene = ExtResource("3_u1dln")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+texture = ExtResource("1_gl8x8")
+
+[node name="Sprite2D2" type="Sprite2D" parent="CharacterBody2D"]
+texture = ExtResource("2_8ya2f")
+
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("CircleShape2D_r8wai")
+
+[node name="Area2D" type="Area2D" parent="CharacterBody2D"]
+script = ExtResource("6_m0c0d")
+
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="CharacterBody2D/Area2D"]
+shape = SubResource("CircleShape2D_r8wai")
+
+[node name="CharacterBody2D2" type="CharacterBody2D" parent="."]
+position = Vector2(0, -500)
+script = ExtResource("2_r8wai")
+explosion_scene = ExtResource("3_u1dln")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D2"]
+texture = ExtResource("1_gl8x8")
+
+[node name="Sprite2D2" type="Sprite2D" parent="CharacterBody2D2"]
+texture = ExtResource("2_8ya2f")
+
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="CharacterBody2D2"]
+shape = SubResource("CircleShape2D_r8wai")
+
+[node name="Area2D" type="Area2D" parent="CharacterBody2D2"]
+script = ExtResource("6_m0c0d")
+
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="CharacterBody2D2/Area2D"]
+shape = SubResource("CircleShape2D_r8wai")
+
+[node name="CharacterBody2D3" type="CharacterBody2D" parent="."]
+position = Vector2(500, 0)
+script = ExtResource("2_r8wai")
+explosion_scene = ExtResource("3_u1dln")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D3"]
+texture = ExtResource("1_gl8x8")
+
+[node name="Sprite2D2" type="Sprite2D" parent="CharacterBody2D3"]
+texture = ExtResource("2_8ya2f")
+
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="CharacterBody2D3"]
+shape = SubResource("CircleShape2D_r8wai")
+
+[node name="Area2D" type="Area2D" parent="CharacterBody2D3"]
+script = ExtResource("6_m0c0d")
+
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="CharacterBody2D3/Area2D"]
+shape = SubResource("CircleShape2D_r8wai")
+
+[node name="CharacterBody2D4" type="CharacterBody2D" parent="."]
+position = Vector2(0, 500)
+script = ExtResource("2_r8wai")
+explosion_scene = ExtResource("3_u1dln")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D4"]
+texture = ExtResource("1_gl8x8")
+
+[node name="Sprite2D2" type="Sprite2D" parent="CharacterBody2D4"]
+texture = ExtResource("2_8ya2f")
+
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="CharacterBody2D4"]
+shape = SubResource("CircleShape2D_r8wai")
+
+[node name="Area2D" type="Area2D" parent="CharacterBody2D4"]
+script = ExtResource("6_m0c0d")
+
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="CharacterBody2D4/Area2D"]
+shape = SubResource("CircleShape2D_r8wai")
+
+[connection signal="body_entered" from="CharacterBody2D/Area2D" to="CharacterBody2D/Area2D" method="_on_body_entered"]
+[connection signal="body_entered" from="CharacterBody2D2/Area2D" to="CharacterBody2D2/Area2D" method="_on_body_entered"]
+[connection signal="body_entered" from="CharacterBody2D3/Area2D" to="CharacterBody2D3/Area2D" method="_on_body_entered"]
+[connection signal="body_entered" from="CharacterBody2D4/Area2D" to="CharacterBody2D4/Area2D" method="_on_body_entered"]

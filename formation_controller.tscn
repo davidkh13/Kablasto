@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7ucsp42pnrm4"]
+
+[ext_resource type="Script" uid="uid://dh7265p5piykx" path="res://scripts/formation_controller.gd" id="1_72x87"]
+[ext_resource type="PackedScene" uid="uid://cn5oyp512j8pv" path="res://charger.tscn" id="2_yk2tc"]
+
+[node name="FormationController" type="Node2D"]
+script = ExtResource("1_72x87")
+fighter_scene = ExtResource("2_yk2tc")
+
+[node name="Marker2D1" type="Marker2D" parent="."]
+position = Vector2(-100, 86)
+
+[node name="Marker2D2" type="Marker2D" parent="."]
+position = Vector2(0, -87)
+
+[node name="Marker2D3" type="Marker2D" parent="."]
+position = Vector2(100, 86)

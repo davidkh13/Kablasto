@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://bgoxidu1681mt"]
+
+[ext_resource type="Texture2D" uid="uid://bkwj02ov5ubq" path="res://Title.png" id="1_pevhg"]
+[ext_resource type="Script" uid="uid://dqegd1uf4th5b" path="res://start_screen.gd" id="2_afy8x"]
+[ext_resource type="AudioStream" uid="uid://bkk1ryek8tafk" path="res://bonus.wav" id="3_afy8x"]
+
+[node name="StartScreen" type="TextureRect"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -668.0
+offset_top = -368.0
+offset_right = 662.0
+offset_bottom = 407.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_pevhg")
+expand_mode = 1
+script = ExtResource("2_afy8x")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_afy8x")

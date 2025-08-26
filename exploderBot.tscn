@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://drdtbhfdqm0ph"]
+
+[ext_resource type="Script" uid="uid://cdjn6t3insij7" path="res://scripts/exploder_bot.gd" id="1_d0fjv"]
+[ext_resource type="Texture2D" uid="uid://b2dvfedowf80c" path="res://bad2.png" id="1_o02wi"]
+[ext_resource type="PackedScene" uid="uid://ct2kcg2ryumfb" path="res://explode.tscn" id="2_35nsv"]
+[ext_resource type="Script" uid="uid://gttint8xxb84" path="res://scripts/exploderBotArea2d.gd" id="3_pp33q"]
+
+[node name="exploderBot" type="RigidBody2D"]
+gravity_scale = 0.0
+script = ExtResource("1_d0fjv")
+explosion_scene = ExtResource("2_35nsv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_o02wi")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(9, -275, 84, -195, 190, -235, 188, -100, 292, -13, 193, 74, 195, 183, 86, 176, -8, 296, -83, 176, -201, 180, -185, 72, -293, -4, -178, -107, -201, -223, -79, -206)
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("3_pp33q")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(9, -275, 84, -195, 190, -235, 188, -100, 292, -13, 193, 74, 195, 183, 86, 176, -8, 296, -83, 176, -201, 180, -185, 72, -293, -4, -178, -107, -201, -223, -79, -206)
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

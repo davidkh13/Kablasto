@@ -1,0 +1,36 @@
+[gd_scene load_steps=9 format=3 uid="uid://jjoyxkpngbc5"]
+
+[ext_resource type="Script" uid="uid://cebnerrw2pnt" path="res://scripts/asteroid_boss.gd" id="1_g44jf"]
+[ext_resource type="Texture2D" uid="uid://bff1dpgakqbv4" path="res://asteroid.png" id="1_xrdto"]
+[ext_resource type="PackedScene" uid="uid://cm14ss3di5sea" path="res://asteroid.tscn" id="2_juo1f"]
+[ext_resource type="PackedScene" uid="uid://ct2kcg2ryumfb" path="res://explode.tscn" id="3_w4gw5"]
+[ext_resource type="Script" uid="uid://ccmo4ekibih68" path="res://scripts/area_2d(hit_box).gd" id="4_8f0mk"]
+[ext_resource type="PackedScene" uid="uid://xwpwa71rtxbv" path="res://radial_glow.tscn" id="4_a84wf"]
+[ext_resource type="Script" uid="uid://duuqgxn8n4rsm" path="res://scripts/explosion_sound_pool.gd" id="6_anav3"]
+[ext_resource type="AudioStream" uid="uid://bwciapnf3m3ju" path="res://explosion.wav" id="7_a84wf"]
+
+[node name="asteroid_boss" type="RigidBody2D"]
+mass = 9000.0
+gravity_scale = 0.0
+script = ExtResource("1_g44jf")
+asteroid_scene = ExtResource("2_juo1f")
+explosion_scene = ExtResource("3_w4gw5")
+radial_glow_scene = ExtResource("4_a84wf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_xrdto")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-6, -112, 80, -65, 119, 7, 82, 82, 1, 118, -93, 74, -123, -5, -75, -93)
+
+[node name="Area2D(Hit Box)" type="Area2D" parent="."]
+script = ExtResource("4_8f0mk")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D(Hit Box)"]
+polygon = PackedVector2Array(-6, -112, 80, -65, 119, 7, 82, 82, 1, 118, -93, 74, -123, -5, -75, -93)
+
+[node name="ExplosionSoundPool" type="Node" parent="."]
+script = ExtResource("6_anav3")
+sound_stream = ExtResource("7_a84wf")
+
+[connection signal="body_entered" from="Area2D(Hit Box)" to="Area2D(Hit Box)" method="_on_body_entered"]

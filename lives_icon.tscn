@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b70hi67yfl0a2"]
+
+[ext_resource type="Texture2D" uid="uid://cq8utl8pemqse" path="res://spaceship.png" id="1_nfu11"]
+
+[node name="Sprite2D" type="Sprite2D"]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_nfu11")

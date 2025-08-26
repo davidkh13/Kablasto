@@ -1,0 +1,84 @@
+[gd_scene load_steps=16 format=3 uid="uid://db2cicg8l8w3o"]
+
+[ext_resource type="Script" uid="uid://bg4fwiyk1f7oo" path="res://scripts/charger2d.gd" id="1_7wvgc"]
+[ext_resource type="Script" uid="uid://clcujro02avg8" path="res://scripts/charger_boss.gd" id="1_62105"]
+[ext_resource type="PackedScene" uid="uid://xwpwa71rtxbv" path="res://radial_glow.tscn" id="2_2lpm6"]
+[ext_resource type="PackedScene" uid="uid://ct2kcg2ryumfb" path="res://explode.tscn" id="3_smxl6"]
+[ext_resource type="PackedScene" uid="uid://b7ucsp42pnrm4" path="res://formation_controller.tscn" id="4_gpiuj"]
+[ext_resource type="Shader" uid="uid://bea1pet238cyb" path="res://charger_boss.gdshader" id="4_mnsrn"]
+[ext_resource type="Script" uid="uid://duuqgxn8n4rsm" path="res://scripts/explosion_sound_pool.gd" id="5_ucdi3"]
+[ext_resource type="AudioStream" uid="uid://bwciapnf3m3ju" path="res://explosion.wav" id="6_15pp7"]
+[ext_resource type="AudioStream" uid="uid://cqkg5q81qdthf" path="res://LetterChange.wav" id="9_ajur2"]
+[ext_resource type="AudioStream" uid="uid://baa6m7tsy707y" path="res://formation approaching.mp3" id="10_ajur2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gpiuj"]
+shader = ExtResource("4_mnsrn")
+shader_parameter/glow_enabled = true
+shader_parameter/glow_color = Color(1, 1, 0.3, 1)
+shader_parameter/base_strength = 0.2
+shader_parameter/pulse_strength = 1.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_62105"]
+load_path = "res://.godot/imported/charger.png-49ad82ba3f93fc36559e92f895361469.ctex"
+
+[sub_resource type="Gradient" id="Gradient_v8qja"]
+offsets = PackedFloat32Array(0.0181818, 0.818182, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.490909, 0.490909, 0.490909, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ajur2"]
+gradient = SubResource("Gradient_v8qja")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ajur2"]
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 100.0
+emission_ring_radius = 250.0
+emission_ring_inner_radius = 150.0
+emission_ring_cone_angle = 45.0
+inherit_velocity_ratio = 1.0
+spread = 180.0
+gravity = Vector3(0, 98, 0)
+scale_max = 3.0
+color = Color(0.823529, 1, 0.6, 1)
+color_ramp = SubResource("GradientTexture1D_ajur2")
+
+[node name="charger_boss" type="RigidBody2D"]
+mass = 2.0
+linear_damp_mode = 1
+script = ExtResource("1_62105")
+radial_glow_scene = ExtResource("2_2lpm6")
+explosion_scene = ExtResource("3_smxl6")
+formation_scene = ExtResource("4_gpiuj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_gpiuj")
+texture = SubResource("CompressedTexture2D_62105")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(5, -167, 39, -141, 60, -224, 85, -106, 104, -187, 119, -86, 259, 17, 78, 122, 2, 218, -72, 125, -255, 15, -111, -96, -102, -196, -80, -108, -59, -218, -38, -131)
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("1_7wvgc")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(5, -167, 39, -141, 60, -224, 85, -106, 104, -187, 119, -86, 259, 17, 78, 122, 2, 218, -72, 125, -255, 15, -111, -96, -102, -196, -80, -108, -59, -218, -38, -131)
+
+[node name="ExplosionSoundPool" type="Node" parent="."]
+script = ExtResource("5_ucdi3")
+sound_stream = ExtResource("6_15pp7")
+
+[node name="weak_hit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_ajur2")
+
+[node name="formationApproach" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_ajur2")
+volume_db = 3.0
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 30
+lifetime = 0.25
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_ajur2")
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

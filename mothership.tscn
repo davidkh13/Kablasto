@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3 uid="uid://c657u1q2or8mx"]
+
+[ext_resource type="Script" uid="uid://ddx4s7soqsb6g" path="res://scripts/mothership.gd" id="1_ksiyl"]
+[ext_resource type="PackedScene" uid="uid://ct2kcg2ryumfb" path="res://explode.tscn" id="2_1bwbg"]
+[ext_resource type="PackedScene" uid="uid://c7b0r6pjy0ksu" path="res://mini_ship.tscn" id="3_fm0m2"]
+[ext_resource type="PackedScene" uid="uid://xwpwa71rtxbv" path="res://radial_glow.tscn" id="4_lct7p"]
+[ext_resource type="Texture2D" uid="uid://cx47mf062kygs" path="res://mothership.png" id="5_bwbpi"]
+[ext_resource type="Script" uid="uid://kr2dtlyiosw5" path="res://mothershiparea_2d.gd" id="6_fm0m2"]
+
+[node name="mothership" type="RigidBody2D"]
+gravity_scale = 0.0
+script = ExtResource("1_ksiyl")
+explosion_scene = ExtResource("2_1bwbg")
+miniship_scene = ExtResource("3_fm0m2")
+radial_glow_scene = ExtResource("4_lct7p")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("5_bwbpi")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(0, -427, 216, -240, 335, 9, 182, 183, 161, 437, 104, 242, -98, 237, -153, 427, -181, 159, -339, 6, -217, -248)
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("6_fm0m2")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(0, -427, 216, -240, 335, 9, 182, 183, 161, 437, 104, 242, -98, 237, -153, 427, -181, 159, -339, 6, -217, -248)
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(0, -130)
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

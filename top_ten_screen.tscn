@@ -1,0 +1,327 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxo5ufdwe2ujt"]
+
+[ext_resource type="Script" uid="uid://btmyvd2ck3sbe" path="res://scripts/top_ten_screen.gd" id="1_a08tm"]
+[ext_resource type="FontFile" uid="uid://baawqnj073dtx" path="res://AstronBoyWonder.ttf" id="1_ep28q"]
+[ext_resource type="AudioStream" uid="uid://bkk1ryek8tafk" path="res://bonus.wav" id="3_wp6f7"]
+
+[node name="TopTenScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_a08tm")
+
+[node name="ContentGroup" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LabelHighScore" type="Label" parent="ContentGroup"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -202.0
+offset_top = -27.0
+offset_right = 202.0
+offset_bottom = 27.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.854902, 0.74902, 0.380392, 1)
+theme_override_colors/font_shadow_color = Color(0.905882, 0.427451, 0.25098, 1)
+theme_override_colors/font_outline_color = Color(0.427451, 0.341176, 0.882353, 1)
+theme_override_fonts/font = ExtResource("1_ep28q")
+theme_override_font_sizes/font_size = 50
+text = "Top 10 High Scores"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ContentGroup/LabelHighScore"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -178.0
+offset_top = 21.0
+offset_right = 178.0
+offset_bottom = 437.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Score1" type="HBoxContainer" parent="ContentGroup/LabelHighScore/VBoxContainer"]
+layout_mode = 2
+
+[node name="LabelRank" type="Label" parent="ContentGroup/LabelHighScore/VBoxContainer/Score1"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ep28q")
+theme_override_font_sizes/font_size = 35
+text = "1-"
+
+[node name="LabelName" type="Label" parent="ContentGroup/LabelHighScore/VBoxContainer/Score1"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ep28q")
+theme_override_font_sizes/font_size = 35
+text = "AAA-"
+
+[node name="LabelScore" type="Label" parent="ContentGroup/LabelHighScore/VBoxContainer/Score1"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ep28q")
+theme_override_font_sizes/font_size = 35
+text = "10000-"
+
+[node name="LabelLevel" type="Label" parent="ContentGroup/LabelHighScore/VBoxContainer/Score1"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ep28q")
+theme_override_font_sizes/font_size = 35
+text = "Level 1"
+
+[node name="Score2" type="HBoxContainer" parent="ContentGroup/LabelHighScore/VBoxContainer"]
+layout_mode = 2
+
+[node name="LabelRank" type="Label" parent="ContentGroup/LabelHighScore/VBoxContainer/Score2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ep28q")
+theme_override_font_sizes/font_size = 35
+text = "2-"
+
+[node name="LabelName" type="Label" parent="ContentGroup/LabelHighScore/VBoxContainer/Score2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ep28q")
+theme_override_font_sizes/font_size = 35
+text = "AAA-"
+
+[node name="LabelScore" type="Label" parent="ContentGroup/LabelHighScore/VBoxContainer/Score2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ep28q")
+theme_override_font_sizes/font_size = 35
+text = "10000-"
+
+[node name="LabelLevel" type="Label" parent="ContentGroup/LabelHighScore/VBoxContainer/Score2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ep28q")
+theme_override_font_sizes/font_size = 35
+text = "Level 1"
+
+[node name="Score3" type="HBoxContainer" parent="ContentGroup/LabelHighScore/VBoxContainer"]
+layout_mode = 2
+
+[node name="LabelRank" type="Label" parent="ContentGroup/LabelHighScore/VBoxContainer/Score3"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ep28q")
+theme_override_font_sizes/font_size = 35
+text = "3-"
+
+[node name="LabelName" type="Label" parent="ContentGroup/LabelHighScore/VBoxContainer/Score3"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ep28q")
+theme_override_font_sizes/font_size = 35
+text = "AAA-"
+
+[node name="LabelScore" type="Label" parent="ContentGroup/LabelHighScore/VBoxContainer/Score3"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ep28q")
+theme_override_font_sizes/font_size = 35
+text = "10000-"
+
+[node name="LabelLevel" type="Label" parent="ContentGroup/LabelHighScore/VBoxContainer/Score3"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ep28q")
+theme_override_font_sizes/font_size = 35
+text = "Level 1"
+
+[node name="Score4" type="HBoxContainer" parent="ContentGroup/LabelHighScore/VBoxContainer"]
+layout_mode = 2
+
+[node name="LabelRank" type="Label" parent="ContentGroup/LabelHighScore/VBoxContainer/Score4"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ep28q")
+theme_override_font_sizes/font_size = 35
+text = "4-"
+
+[node name="LabelName" type="Label" parent="ContentGroup/LabelHighScore/VBoxContainer/Score4"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ep28q")
+theme_override_font_sizes/font_size = 35
+text = "AAA-"
+
+[node name="LabelScore" type="Label" parent="ContentGroup/LabelHighScore/VBoxContainer/Score4"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ep28q")
+theme_override_font_sizes/font_size = 35
+text = "10000-"
+
+[node name="LabelLevel" type="Label" parent="ContentGroup/LabelHighScore/VBoxContainer/Score4"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ep28q")
+theme_override_font_sizes/font_size = 35
+text = "Level 1"
+
+[node name="Score5" type="HBoxContainer" parent="ContentGroup/LabelHighScore/VBoxContainer"]
+layout_mode = 2
+
+[node name="LabelRank" type="Label" parent="ContentGroup/LabelHighScore/VBoxContainer/Score5"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ep28q")
+theme_override_font_sizes/font_size = 35
+text = "5-"
+
+[node name="LabelName" type="Label" parent="ContentGroup/LabelHighScore/VBoxContainer/Score5"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ep28q")
+theme_override_font_sizes/font_size = 35
+text = "AAA-"
+
+[node name="LabelScore" type="Label" parent="ContentGroup/LabelHighScore/VBoxContainer/Score5"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ep28q")
+theme_override_font_sizes/font_size = 35
+text = "10000-"
+
+[node name="LabelLevel" type="Label" parent="ContentGroup/LabelHighScore/VBoxContainer/Score5"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ep28q")
+theme_override_font_sizes/font_size = 35
+text = "Level 1"
+
+[node name="Score6" type="HBoxContainer" parent="ContentGroup/LabelHighScore/VBoxContainer"]
+layout_mode = 2
+
+[node name="LabelRank" type="Label" parent="ContentGroup/LabelHighScore/VBoxContainer/Score6"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ep28q")
+theme_override_font_sizes/font_size = 35
+text = "6-"
+
+[node name="LabelName" type="Label" parent="ContentGroup/LabelHighScore/VBoxContainer/Score6"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ep28q")
+theme_override_font_sizes/font_size = 35
+text = "AAA-"
+
+[node name="LabelScore" type="Label" parent="ContentGroup/LabelHighScore/VBoxContainer/Score6"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ep28q")
+theme_override_font_sizes/font_size = 35
+text = "10000-"
+
+[node name="LabelLevel" type="Label" parent="ContentGroup/LabelHighScore/VBoxContainer/Score6"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ep28q")
+theme_override_font_sizes/font_size = 35
+text = "Level 1"
+
+[node name="Score7" type="HBoxContainer" parent="ContentGroup/LabelHighScore/VBoxContainer"]
+layout_mode = 2
+
+[node name="LabelRank" type="Label" parent="ContentGroup/LabelHighScore/VBoxContainer/Score7"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ep28q")
+theme_override_font_sizes/font_size = 35
+text = "7-"
+
+[node name="LabelName" type="Label" parent="ContentGroup/LabelHighScore/VBoxContainer/Score7"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ep28q")
+theme_override_font_sizes/font_size = 35
+text = "AAA-"
+
+[node name="LabelScore" type="Label" parent="ContentGroup/LabelHighScore/VBoxContainer/Score7"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ep28q")
+theme_override_font_sizes/font_size = 35
+text = "10000-"
+
+[node name="LabelLevel" type="Label" parent="ContentGroup/LabelHighScore/VBoxContainer/Score7"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ep28q")
+theme_override_font_sizes/font_size = 35
+text = "Level 1"
+
+[node name="Score8" type="HBoxContainer" parent="ContentGroup/LabelHighScore/VBoxContainer"]
+layout_mode = 2
+
+[node name="LabelRank" type="Label" parent="ContentGroup/LabelHighScore/VBoxContainer/Score8"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ep28q")
+theme_override_font_sizes/font_size = 35
+text = "8-"
+
+[node name="LabelName" type="Label" parent="ContentGroup/LabelHighScore/VBoxContainer/Score8"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ep28q")
+theme_override_font_sizes/font_size = 35
+text = "AAA-"
+
+[node name="LabelScore" type="Label" parent="ContentGroup/LabelHighScore/VBoxContainer/Score8"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ep28q")
+theme_override_font_sizes/font_size = 35
+text = "10000-"
+
+[node name="LabelLevel" type="Label" parent="ContentGroup/LabelHighScore/VBoxContainer/Score8"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ep28q")
+theme_override_font_sizes/font_size = 35
+text = "Level 1"
+
+[node name="Score9" type="HBoxContainer" parent="ContentGroup/LabelHighScore/VBoxContainer"]
+layout_mode = 2
+
+[node name="LabelRank" type="Label" parent="ContentGroup/LabelHighScore/VBoxContainer/Score9"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ep28q")
+theme_override_font_sizes/font_size = 35
+text = "9-"
+
+[node name="LabelName" type="Label" parent="ContentGroup/LabelHighScore/VBoxContainer/Score9"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ep28q")
+theme_override_font_sizes/font_size = 35
+text = "AAA-"
+
+[node name="LabelScore" type="Label" parent="ContentGroup/LabelHighScore/VBoxContainer/Score9"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ep28q")
+theme_override_font_sizes/font_size = 35
+text = "10000-"
+
+[node name="LabelLevel" type="Label" parent="ContentGroup/LabelHighScore/VBoxContainer/Score9"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ep28q")
+theme_override_font_sizes/font_size = 35
+text = "Level 1"
+
+[node name="Score10" type="HBoxContainer" parent="ContentGroup/LabelHighScore/VBoxContainer"]
+layout_mode = 2
+
+[node name="LabelRank" type="Label" parent="ContentGroup/LabelHighScore/VBoxContainer/Score10"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ep28q")
+theme_override_font_sizes/font_size = 35
+text = "10-"
+
+[node name="LabelName" type="Label" parent="ContentGroup/LabelHighScore/VBoxContainer/Score10"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ep28q")
+theme_override_font_sizes/font_size = 35
+text = "AAA-"
+
+[node name="LabelScore" type="Label" parent="ContentGroup/LabelHighScore/VBoxContainer/Score10"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ep28q")
+theme_override_font_sizes/font_size = 35
+text = "10000-"
+
+[node name="LabelLevel" type="Label" parent="ContentGroup/LabelHighScore/VBoxContainer/Score10"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ep28q")
+theme_override_font_sizes/font_size = 35
+text = "Level 1"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_wp6f7")

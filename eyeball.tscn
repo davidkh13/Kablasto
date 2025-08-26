@@ -1,0 +1,38 @@
+[gd_scene load_steps=8 format=3 uid="uid://d5m14c73cbok"]
+
+[ext_resource type="Script" uid="uid://b82mys7n8xbn4" path="res://scripts/eyeball.gd" id="1_wd7op"]
+[ext_resource type="PackedScene" uid="uid://ct2kcg2ryumfb" path="res://explode.tscn" id="2_bmxl1"]
+[ext_resource type="Texture2D" uid="uid://dc2hjx1qb3ljf" path="res://badlid.png" id="2_pbjty"]
+[ext_resource type="Texture2D" uid="uid://df3nniu3jlivj" path="res://badeyeball.png" id="3_bmxl1"]
+[ext_resource type="PackedScene" uid="uid://de6tr6152n5q" path="res://bad_bullet.tscn" id="3_yqidn"]
+[ext_resource type="Texture2D" uid="uid://cpx0h1qwxi1lm" path="res://badeyeframe.png" id="4_yqidn"]
+[ext_resource type="Script" uid="uid://btrhvm4b6d5n" path="res://scripts/area_2d_hit_box.gd" id="6_bmxl1"]
+
+[node name="eyeball" type="RigidBody2D"]
+mass = 3.0
+gravity_scale = 0.0
+script = ExtResource("1_wd7op")
+explosion_scene = ExtResource("2_bmxl1")
+bullet_scene = ExtResource("3_yqidn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_pbjty")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+texture = ExtResource("3_bmxl1")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+texture = ExtResource("4_yqidn")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-7, -355, 56, -213, 211, -296, 198, -91, 359, -2, 206, 88, 258, 267, 87, 210, 17, 371, -79, 218, -253, 267, -206, 99, -378, -5, -206, -85, -251, -264, -87, -194)
+
+[node name="Area2D_HitBox" type="Area2D" parent="."]
+collision_layer = 9
+collision_mask = 9
+script = ExtResource("6_bmxl1")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D_HitBox"]
+polygon = PackedVector2Array(-7, -355, 56, -213, 211, -296, 198, -91, 359, -2, 206, 88, 258, 267, 87, 210, 17, 371, -79, 218, -253, 267, -206, 99, -378, -5, -206, -85, -251, -264, -87, -194)
+
+[connection signal="body_entered" from="Area2D_HitBox" to="Area2D_HitBox" method="_on_body_entered"]
