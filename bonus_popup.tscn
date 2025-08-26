@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://4wynyvmtd1bc"]
+
+[ext_resource type="Script" uid="uid://dn7rv5tjtxco" path="res://scripts/bonus_popup.gd" id="1_ooket"]
+[ext_resource type="FontFile" uid="uid://baawqnj073dtx" path="res://AstronBoyWonder.ttf" id="2_r21vh"]
+[ext_resource type="AudioStream" uid="uid://bkk1ryek8tafk" path="res://bonus.wav" id="3_mm4w6"]
+
+[node name="Bonus_Popup" type="Control"]
+z_index = 1
+layout_mode = 3
+anchors_preset = 0
+scale = Vector2(2.5, 2.5)
+script = ExtResource("1_ooket")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("2_r21vh")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_mm4w6")

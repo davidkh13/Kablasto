@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://c5t3tqocyfmmf"
+path="res://.godot/imported/Kablasto Waltz.ogg-3fd4ddb80165d71c9431ed1f2c6ef15c.oggvorbisstr"
+
+[deps]
+
+source_file="res://Kablasto Waltz.ogg"
+dest_files=["res://.godot/imported/Kablasto Waltz.ogg-3fd4ddb80165d71c9431ed1f2c6ef15c.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
